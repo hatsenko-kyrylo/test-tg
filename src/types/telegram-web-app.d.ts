@@ -9,11 +9,13 @@ interface TelegramWebAppUser {
 interface TelegramWebApp {
     initData: string;
     initDataUnsafe: {
-        user?: TelegramWebAppUser;
+        user?: TelegramWebAppUser; // Может быть undefined
     };
     ready: () => void;
     close: () => void;
     setBackgroundColor: (color: string) => void;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    onEvent: (event: string, callback: (data: any) => void) => void; // Обработка событий
 }
 
 declare global {
@@ -24,4 +26,4 @@ declare global {
     }
 }
 
-export {};
+export {}; // Для того чтобы файл был модулем
