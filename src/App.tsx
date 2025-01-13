@@ -1,9 +1,6 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Header from './components/Header';
-import Home from './pages/Home';
-import About from './pages/About';
-import History from './pages/History';
-import Bridge from './pages/Bridge';
+import Page from './components/Page';
 import './index.css';
 
 function App() {
@@ -11,10 +8,10 @@ function App() {
         <Router>
             <Header />
             <Routes>
-                <Route path='/' element={<Home />} />
-                <Route path='/about' element={<About />} />
-                <Route path='/history' element={<History />} />
-                <Route path='/bridge' element={<Bridge />} />
+                <Route path='/' element={<Page pageName='Home' />} />
+                <Route path='/about' element={<Page pageName='About' />} />
+                <Route path='/history' element={<Page pageName='History' />} />
+                <Route path='/bridge' element={<Page pageName='Bridge' />} />
             </Routes>
         </Router>
     );

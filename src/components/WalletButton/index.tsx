@@ -1,27 +1,24 @@
-import { useAppDispatch, useAppSelector } from '@/hooks/hooks';
-import { RootState } from '@/redux/store';
-import { connectWallet, disconnectWallet } from '@/redux/walletSlice';
-
-import './walletButton.css';
-import { useTonConnectUI, useTonAddress } from '@tonconnect/ui-react';
 import { useEffect } from 'react';
+import { useTonConnectUI, useTonAddress } from '@tonconnect/ui-react';
+import { useAppDispatch } from '@/hooks/hooks';
+import { connectWallet, disconnectWallet } from '@/redux/walletSlice';
+import './walletButton.css';
 
 const WalletButton = () => {
-    const address = useAppSelector((state: RootState) => state.wallet.address);
     const dispatch = useAppDispatch();
-
     const [tonConnectUI] = useTonConnectUI();
     const userAddress = useTonAddress();
 
     useEffect(() => {
-        dispatch(connectWallet(userAddress));
+        if (userAddress) {
+            dispatch(connectWallet(userAddress));
+        }
     }, [userAddress]);
 
-    console.log(userAddress);
-
     const handleConnect = async () => {
-        if (address) {
+        if (userAddress) {
             dispatch(disconnectWallet());
+            tonConnectUI.disconnect();
         } else {
             tonConnectUI.openModal();
         }
@@ -31,9 +28,9 @@ const WalletButton = () => {
         <button
             onClick={handleConnect}
             className='wallet-button'
-            style={{ backgroundColor: address ? '#ba2323' : '#2349ba' }}
+            style={{ backgroundColor: userAddress ? '#ba2323' : '#2349ba' }}
         >
-            {address ? 'Disconnect Wallet' : 'Connect Wallet'}
+            {userAddress ? 'Disconnect Wallet' : 'Connect Wallet'}
         </button>
     );
 };

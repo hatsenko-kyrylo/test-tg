@@ -1,11 +1,9 @@
-import { NavLink } from 'react-router-dom'; // Используйте NavLink из react-router-dom
+import { NavLink } from 'react-router-dom';
 import WalletButton from '../WalletButton';
-
 import homeIcon from '@/assets/home.svg';
 import aboutIcon from '@/assets/about.svg';
 import historyIcon from '@/assets/history.svg';
 import bridgeIcon from '@/assets/bridge.svg';
-
 import './header.css';
 
 const Header = () => {
