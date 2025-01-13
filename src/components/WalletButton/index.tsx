@@ -9,8 +9,8 @@ import { useEffect } from 'react';
 const WalletButton = () => {
     const address = useAppSelector((state: RootState) => state.wallet.address);
     const dispatch = useAppDispatch();
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const [tonConnectUI, setOptions] = useTonConnectUI();
+
+    const [tonConnectUI] = useTonConnectUI();
     const userAddress = useTonAddress();
 
     useEffect(() => {
